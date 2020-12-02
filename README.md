@@ -1,30 +1,86 @@
 # System Design Capstone
 Inherited Project to build & optimize database and server to handle webscale traffic\
-Frontend Owner: Blake-Whitham\
-Backend Owner: TimothyAkana
+**Frontend Owner:** Blake-Whitham\
+**Backend Owner:** TimothyAkana
 
-# Mortgage Prices
-## Create
-**Method:**  POST\
-**Endpoint:**  /mortgage/prices\
-**Request Body:**  {"mortgageId": mortgageId, "price": price}\
-**Response Object:**  HTTP Status Code 201
+# Server API
+## Add Home Listing
+  * POST `/api/mortgage/homes`
 
-## Read:
-**Method:**  GET\
-**Endpoint:**  /mortgage/prices/:mortgageId\
-**Request Body:**  {"mortgageId": mortgageId}\
-**Response Object:**  {"id": mortgageId, "price": price}
+**Success Status Code:** `201`
 
-## Update:
-**Method:**  PUT\
-**Endpoint:**  /mortgage/prices/:mortgageId\
-**Request Body:**  {"mortgageId": mortgageId, "price": price}\
-**Response Object:**  HTTP Status Code 200
+**Request Body:** Expects JSON with the following keys
+```json
+    {
+      "name": "String",
+      "price": "Integer"
+    }
+```
 
-## Delete:
-**Method:**  DELETE\
-**Endpoint:**  /mortgage/prices/:mortgageId\
-**Request Body:**  {"mortgageId": mortgageId}\
-**Response Object:**  HTTP Status Code 200
+## Get Home Listing
+  * GET `/api/mortgage/homes/:id`
 
+**Path Parameters:**
+  * `id` home listing id
+
+**Success Status Code:** `200`
+
+**Returns:** JSON
+```json
+    {
+      "id": "Number",
+      "name": "String",
+      "price": "Number"
+    }
+```
+
+## Update Home Listing Info
+  * PATCH `/api/mortgage/homes/:id`
+
+**Path Parameters:**
+  * `id` home listing id
+
+**Success Status Code:** `204`
+
+**Request Body:** Expects JSON with any of the following keys (include only kets to be updated)
+```json
+    {
+      "name": "String",
+      "price": "Number"
+    }
+```
+
+## Delete Home Listing
+  * DELETE `/api/mortgage/homes/:id`
+
+**Path Parameters:**
+  * `id` home listing id
+
+**Success Status Code:** `204`
+
+# Schema Data-Shape Notes:
+Home Price Schema
+```json
+    {
+      "id": "Number",
+      "name": "String",
+      "price": "Number"
+    }
+```
+
+Discount Schema
+```json
+    {
+      "id": "Number",
+      "name": "String",
+      "price": "Number",
+      "start": "YYYY-MM-MM",
+      "end": "YYYY-MM-MM",
+      "maxDiscountPoints": "Number",
+      "minDownPayment": "Number",
+      "minInterestRate": "Number",
+      "lowIncome": "Boolean",
+      "veteran": "Boolean",
+      "homeId": "Number"
+    }
+```
