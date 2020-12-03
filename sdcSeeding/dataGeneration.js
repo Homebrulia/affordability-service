@@ -69,4 +69,4 @@ const generateDataRecords = (numRecords) => {
   }
 }
 
-console.log(generateDataRecords(1000));
+console.log(generateDataRecords(10000000));
