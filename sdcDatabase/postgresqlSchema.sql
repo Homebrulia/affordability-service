@@ -4,11 +4,23 @@ USE affordability
 
 CREATE SCHEMA IF NOT EXISTS mortgage
 
-CREATE TABLE mortgage.home_prices (
+CREATE TABLE mortgage.agent (
+  id GENERATED AS IDENTITY,
+  name VARCHAR (50) NOT NULL,
+  phone TEXT NOT NULL,
+  email VARCHAR (50) NOT NULL,
+  rating REAL
+)
+
+CREATE TABLE mortgage.home (
   id GENERATED AS IDENTITY,
   name VARCHAR (50) NOT NULL,
   price INT NOT NULL CHECK (price > 0),
   PRIMARY KEY(id)
+  CONSTRAINT agent_id,
+    FOREIGN KEY(id)
+      REFERENCES agent(id)
+      ON DELETE CASCADE
 )
 
 CREATE TABLE mortage.discounts (
@@ -25,6 +37,6 @@ CREATE TABLE mortage.discounts (
   PRIMARY KEY(id)
   CONSTRAINT home_id
     FOREIGN KEY(id)
-      REFERENCES home_prices(id)
+      REFERENCES home(id)
       ON DELETE CASCADE
 )

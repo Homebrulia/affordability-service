@@ -26,3 +26,13 @@ CREATE TABLE IF NOT EXISTS home_discounts (
   combinable BOOLEAN,
   PRIMARY KEY (id, home_name, base_price, discount_name, (start, end))
 ) WITH caching = {'keys': 'ALL', 'rows_per_partition': 20}
+
+CREATE TABLE IF NOT EXISTS agent_listings (
+  agent_id INT,
+  home_id INT,
+  home_name VARCHAR,
+  agent_phone TEXT,
+  agent_email VARCHAR,
+  agent_rating FLOAT,
+  PRIMARY KEY (agent_id, home_id)
+)
