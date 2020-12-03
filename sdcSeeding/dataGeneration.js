@@ -27,12 +27,39 @@ const addRandomDays = (date) => {
   return newDate;
 }
 
+const generatePhoneNumber = () => {
+  return `1(${Math.floor(Math.random() * 1000)})${Math.floor(Math.random() * 1000)}-${Math.floor(Math.random() * 10000)}`
+}
+
+const generateEmail = () => {
+  const domains = ['com', 'org', 'net', 'int', 'edu', 'gov', 'mil']
+  return `${lorem.generateWords(1)}@${lorem.generateWords(1)}.${domains[Math.floor(Math.random() * domains.length)]}`
+}
+
 ////Seeding Functions
+
+// Eventually aiming for about 500k agents (each agent will manage 20 listings on average)
+const generateAgents = (numAgents) => {
+  let agentData = [];
+  let id = 1;
+  while (id <= numAgents) {
+    let name = lorem.generateWords(1);
+    let phoneNumber = generatePhoneNumber();
+    let
+  }
+
+
+  return numAgents;
+}
+
 //Eventually aiming for 10 Million homes (primary records)
 const generateHomePrices = (numHomes) => {
   let homePriceData = [];
   let id = 1;
   while (id <= numHomes) {
+    homePriceDate.push( {
+
+    })
     let name = lorem.generateSentences(1);
     let price = 10000 * (Math.floor(Math.random() * 250) + 50);
     homePriceData.push({id: id, name: name, price: price})
