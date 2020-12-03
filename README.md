@@ -5,7 +5,7 @@ Inherited Project to build & optimize database and server to handle webscale tra
 
 # Server API
 ## Add Home Listing
-  * POST `/api/mortgage/homes`
+  * POST `/mortgage/homes`
 
 **Success Status Code:** `201`
 
@@ -18,7 +18,7 @@ Inherited Project to build & optimize database and server to handle webscale tra
 ```
 
 ## Get Home Listing
-  * GET `/api/mortgage/homes/:id`
+  * GET `/mortgage/homes/:id`
 
 **Path Parameters:**
   * `id` home listing id
@@ -35,14 +35,14 @@ Inherited Project to build & optimize database and server to handle webscale tra
 ```
 
 ## Update Home Listing Info
-  * PATCH `/api/mortgage/homes/:id`
+  * PATCH `/mortgage/homes/:id`
 
 **Path Parameters:**
   * `id` home listing id
 
 **Success Status Code:** `204`
 
-**Request Body:** Expects JSON with any of the following keys (include only kets to be updated)
+**Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
 ```json
     {
       "name": "String",
@@ -51,7 +51,7 @@ Inherited Project to build & optimize database and server to handle webscale tra
 ```
 
 ## Delete Home Listing
-  * DELETE `/api/mortgage/homes/:id`
+  * DELETE `/mortgage/homes/:id`
 
 **Path Parameters:**
   * `id` home listing id
@@ -74,13 +74,13 @@ Discount Schema
       "id": "Number",
       "name": "String",
       "price": "Number",
-      "start": "YYYY-MM-MM",
-      "end": "YYYY-MM-MM",
+      "dateRange": "Daterage",
       "maxDiscountPoints": "Number",
       "minDownPayment": "Number",
       "minInterestRate": "Number",
-      "lowIncome": "Boolean",
-      "veteran": "Boolean",
+      "isLowIncome": "Boolean",
+      "isVeteran": "Boolean",
+      "combinable": "Boolean",
       "homeId": "Number"
     }
 ```
