@@ -1,4 +1,5 @@
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
+
 const lorem = new LoremIpsum({
   wordsPerSentence: {
     max: 4,
@@ -6,11 +7,27 @@ const lorem = new LoremIpsum({
   }
 })
 
-//Generates true at rate of probability
-let probability = (probability) => {
+////HELPER FUNCTIONS
+const probability = (probability) => {
   return Math.random() > (1-probability);
 }
 
+const randomDateWithin3Months = () => {
+  let targetDate = new Date();
+  const positiveOrNegative = Math.random() > 0.5 ? 1 : -1;
+  const numberOfDays = Math.round(Math.random() * 90);
+  targetDate.setDate(targetDate.getDate() + (positiveOrNegative * numberOfDays));
+  return targetDate;
+}
+
+const addRandomDays = (date) => {
+  let newDate = new Date(date);
+  const randomDays = Math.floor(Math.random() * 365);
+  newDate.setDate(newDate.getDate() + randomDays)
+  return newDate;
+}
+
+////Seeding Functions
 //Eventually aiming for 10 Million homes (primary records)
 const generateHomePrices = (numHomes) => {
   let homePriceData = [];
@@ -24,6 +41,7 @@ const generateHomePrices = (numHomes) => {
   return homePriceData;
 }
 
+
 //Eventually aiming for 1 Million discounts (roughly 10% of homes will have discounts)
 const generateDiscounts = (numDiscounts, homes) => {
   let discountData = [];
@@ -31,9 +49,9 @@ const generateDiscounts = (numDiscounts, homes) => {
   while (id <= numDiscounts) {
     let target = homes[Math.floor(Math.random() * homes.length)]
     let name = probability(0.5) ? lorem.generateWords(1) : null;
-    let price = Math.floor(target.price * ((Math.random() * 0.2) + 0.1))
-    let start = null;
-    let end = null;
+    let price = Math.floor(target.price * ((Math.random() * 0.2) + 0.1));
+    let start = probability(0.8) ? randomDateWithin3Months() : null;
+    let end = (probability(0.8) && start) ? addRandomDays(start) : null;
     let max_discount_points = probability(0.5) ? (Math.floor(Math.random() * 10)) : null;
     let min_down_payment = probability(0.3) ? Math.floor((((Math.random() * 0.18) + 0.06)) * target.price) : null;
     let min_interest_rate = probability(0.4) ? ((Math.random() * 0.15) + 0.05).toFixed(3) : null;
@@ -69,4 +87,4 @@ const generateDataRecords = (numRecords) => {
   }
 }
 
-console.log(generateDataRecords(10000000));
+// console.log(generateDataRecords(100));
