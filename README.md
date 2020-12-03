@@ -57,30 +57,3 @@ Inherited Project to build & optimize database and server to handle webscale tra
   * `id` home listing id
 
 **Success Status Code:** `204`
-
-# Schema Data-Shape Notes:
-Home Price Schema
-```json
-    {
-      "id": "Number",
-      "name": "String",
-      "price": "Number"
-    }
-```
-
-Discount Schema
-```json
-    {
-      "id": "Number",
-      "name": "String",
-      "price": "Number",
-      "dateRange": "Daterage",
-      "maxDiscountPoints": "Number",
-      "minDownPayment": "Number",
-      "minInterestRate": "Number",
-      "isLowIncome": "Boolean",
-      "isVeteran": "Boolean",
-      "combinable": "Boolean",
-      "homeId": "Number"
-    }
-```
