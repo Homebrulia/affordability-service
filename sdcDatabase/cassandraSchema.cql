@@ -24,5 +24,5 @@ CREATE TABLE IF NOT EXISTS home_discounts (
   low_income BOOLEAN,
   veteran BOOLEAN,
   combinable BOOLEAN,
-  PRIMARY KEY (id, home_name, base_price, (start, end))
+  PRIMARY KEY (id, home_name, base_price, discount_name, (start, end))
 ) WITH caching = {'keys': 'ALL', 'rows_per_partition': 20}

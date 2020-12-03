@@ -14,7 +14,7 @@ CREATE TABLE mortgage.home_prices (
 CREATE TABLE mortage.discounts (
   id GENERATED AS IDENTITY,
   name VARCHAR (50) DEFAULT 'discount',
-  price INT CHECK (price > 0),
+  price INT NOT NULL CHECK (price > 0),
   date DATERANGE,
   max_discount_points INT CHECK (max_discount_points >= 0),
   min_down_payment INT CHECK (min_down_payment >= 0),
