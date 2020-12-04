@@ -16,6 +16,9 @@ CREATE TABLE mortgage.home (
   id GENERATED AS IDENTITY,
   name VARCHAR (50) NOT NULL,
   price INT NOT NULL CHECK (price > 0),
+  home_owners_association: BOOLEAN,
+  home_insurance SMALLINT,
+  property_tax_rate REAL,
   PRIMARY KEY(id)
   CONSTRAINT agent_id,
     FOREIGN KEY(id)

@@ -10,6 +10,16 @@ CREATE TABLE IF NOT EXISTS home_prices (
   PRIMARY KEY (id, price)
 )
 
+CREATE TABLE IF NOT EXISTS home_details (
+  id INT,
+  name VARCHAR,
+  price INT,
+  home_owners_association BOOLEAN,
+  home_insurance INT,
+  property_tax_rate FLOAT,
+  PRIMARY KEY (id, price)
+)
+
 CREATE TABLE IF NOT EXISTS home_discounts (
   id INT,
   home_name VARCHAR,
