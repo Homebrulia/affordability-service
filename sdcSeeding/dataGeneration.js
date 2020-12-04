@@ -27,8 +27,19 @@ const addRandomDays = (date) => {
   return newDate;
 }
 
+const zeroPadding = (number, totalNumDigits) => {
+  let string = number.toString();
+  while (string.length < totalNumDigits) {
+    string = '0' + string
+  }
+  return string;
+}
+
 const generatePhoneNumber = () => {
-  return `1(${Math.floor(Math.random() * 1000)})${Math.floor(Math.random() * 1000)}-${Math.floor(Math.random() * 10000)}`
+  let areaCode = Math.floor(Math.random() * 1000);
+  let firstThreeDigits = Math.floor(Math.random() * 1000);
+  let lastFourDigits = Math.floor(Math.random() * 10000);
+  return `1(${zeroPadding(areaCode, 3)})${zeroPadding(firstThreeDigits, 3)}-${zeroPadding(lastFourDigits, 4)}`
 }
 
 const generateEmail = () => {
@@ -37,37 +48,47 @@ const generateEmail = () => {
 }
 
 ////Seeding Functions
-
 // Eventually aiming for about 500k agents (each agent will manage 20 listings on average)
 const generateAgents = (numAgents) => {
   let agentData = [];
   let id = 1;
   while (id <= numAgents) {
-    let name = lorem.generateWords(1);
-    let phoneNumber = generatePhoneNumber();
-    let
+    agentData.push({
+      id: id,
+      name: lorem.generateWords(1),
+      phone: generatePhoneNumber(),
+      email: generateEmail(),
+      rating: (Math.random() * 5).toFixed(1)
+    })
+    id++;
   }
-
-
-  return numAgents;
+  return agentData;
 }
 
 //Eventually aiming for 10 Million homes (primary records)
-const generateHomePrices = (numHomes) => {
+const generateHomePrices = (numHomes, agents) => {
   let homePriceData = [];
   let id = 1;
   while (id <= numHomes) {
-    homePriceDate.push( {
-
-    })
     let name = lorem.generateSentences(1);
     let price = 10000 * (Math.floor(Math.random() * 250) + 50);
-    homePriceData.push({id: id, name: name, price: price})
+    let home_owners_association = probability(0.4) ? Math.floor(Math.random() * 15000) : null;
+    let home_insurance = probability(0.4) ? 75 : null;
+    let property_tax_rate = (Math.random() * 0.08).toFixed(3);
+    let agent_id = agents[Math.floor(Math.random() * agents.length)].id
+    homePriceData.push({
+      id,
+      name,
+      price,
+      home_owners_association,
+      home_insurance,
+      property_tax_rate,
+      agent_id
+    })
     id++;
   }
   return homePriceData;
 }
-
 
 //Eventually aiming for 1 Million discounts (roughly 10% of homes will have discounts)
 const generateDiscounts = (numDiscounts, homes) => {
@@ -106,12 +127,12 @@ const generateDiscounts = (numDiscounts, homes) => {
 }
 
 const generateDataRecords = (numRecords) => {
-  let homePrices = generateHomePrices(numRecords);
+  let agents = generateAgents(numRecords * 0.05)
+  let homePrices = generateHomePrices(numRecords, agents);
   let discounts = generateDiscounts(numRecords * 0.1, homePrices);
   return {
+    agents,
     homePrices,
     discounts
   }
 }
-
-// console.log(generateDataRecords(100));
