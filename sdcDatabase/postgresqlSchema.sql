@@ -1,33 +1,38 @@
-CREATE DATABASE affordability
+-- to run whole file: psql -f /Users/timothyakana/Documents/Hack_Reactor/SDC/sdcDatabase/postgresqlSchema.sql;
+-- \l  => shows all databases;
+-- \dn => show schemas
+-- \dt [schema].* => show all tables in schema
 
-USE affordability
+CREATE DATABASE affordability;
 
-CREATE SCHEMA IF NOT EXISTS mortgage
+\connect affordability;
+
+CREATE SCHEMA IF NOT EXISTS mortgage;
 
 CREATE TABLE mortgage.agent (
-  id GENERATED AS IDENTITY,
+  id SERIAL,
   name VARCHAR (50) NOT NULL,
   phone TEXT NOT NULL,
   email VARCHAR (50) NOT NULL,
   rating REAL
-)
+);
 
 CREATE TABLE mortgage.home (
-  id GENERATED AS IDENTITY,
+  id SERIAL,
   name VARCHAR (50) NOT NULL,
   price INT NOT NULL CHECK (price > 0),
-  home_owners_association: BOOLEAN,
+  home_owners_association BOOLEAN,
   home_insurance SMALLINT,
   property_tax_rate REAL,
-  PRIMARY KEY(id)
-  CONSTRAINT agent_id,
+  PRIMARY KEY(id),
+  CONSTRAINT agent_id
     FOREIGN KEY(id)
       REFERENCES agent(id)
       ON DELETE CASCADE
-)
+);
 
-CREATE TABLE mortage.discounts (
-  id GENERATED AS IDENTITY,
+CREATE TABLE mortgage.discounts (
+  id SERIAL,
   name VARCHAR (50) DEFAULT 'discount',
   price INT NOT NULL CHECK (price > 0),
   date DATERANGE,
@@ -37,9 +42,9 @@ CREATE TABLE mortage.discounts (
   low_income BOOLEAN DEFAULT FALSE,
   veteran BOOLEAN DEFAULT FALSE,
   combinable BOOLEAN,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
   CONSTRAINT home_id
     FOREIGN KEY(id)
       REFERENCES home(id)
       ON DELETE CASCADE
-)
+);
