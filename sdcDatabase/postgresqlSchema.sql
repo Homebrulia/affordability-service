@@ -1,18 +1,18 @@
-CREATE DATABASE affordability
+CREATE DATABASE affordability;
 
-USE affordability
+\connect affordability;
 
-CREATE SCHEMA IF NOT EXISTS mortgage
+CREATE SCHEMA IF NOT EXISTS mortgage;
 
 CREATE TABLE mortgage.home_prices (
-  id GENERATED AS IDENTITY,
+  id SERIAL,
   name VARCHAR (50) NOT NULL,
   price INT NOT NULL CHECK (price > 0),
   PRIMARY KEY(id)
-)
+);
 
-CREATE TABLE mortage.discounts (
-  id GENERATED AS IDENTITY,
+CREATE TABLE mortgage.discounts (
+  id SERIAL,
   name VARCHAR (50) DEFAULT 'discount',
   price INT CHECK (price > 0),
   date DATERANGE,
@@ -22,9 +22,9 @@ CREATE TABLE mortage.discounts (
   low_income BOOLEAN DEFAULT FALSE,
   veteran BOOLEAN DEFAULT FALSE,
   combinable BOOLEAN,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
   CONSTRAINT home_id
     FOREIGN KEY(id)
-      REFERENCES home_prices(id)
+      REFERENCES mortgage.home_prices(id)
       ON DELETE CASCADE
-)
+);
