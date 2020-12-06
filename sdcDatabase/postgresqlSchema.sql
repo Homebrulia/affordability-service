@@ -9,15 +9,16 @@ CREATE DATABASE affordability;
 
 CREATE SCHEMA IF NOT EXISTS mortgage;
 
-CREATE TABLE mortgage.agent (
+CREATE TABLE mortgage.agents (
   id SERIAL,
   name VARCHAR (50) NOT NULL,
   phone TEXT NOT NULL,
   email VARCHAR (50) NOT NULL,
-  rating REAL
+  rating REAL,
+  PRIMARY KEY(id)
 );
 
-CREATE TABLE mortgage.home (
+CREATE TABLE mortgage.homes (
   id SERIAL,
   name VARCHAR (50) NOT NULL,
   price INT NOT NULL CHECK (price > 0),
@@ -27,7 +28,7 @@ CREATE TABLE mortgage.home (
   PRIMARY KEY(id),
   CONSTRAINT agent_id
     FOREIGN KEY(id)
-      REFERENCES agent(id)
+      REFERENCES mortgage.agents(id)
       ON DELETE CASCADE
 );
 
@@ -45,6 +46,6 @@ CREATE TABLE mortgage.discounts (
   PRIMARY KEY(id),
   CONSTRAINT home_id
     FOREIGN KEY(id)
-      REFERENCES home(id)
+      REFERENCES mortgage.homes(id)
       ON DELETE CASCADE
 );
