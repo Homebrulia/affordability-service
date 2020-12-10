@@ -12,7 +12,8 @@ module.exports = {
         if (err) {
           return console.error('Error executing query', err.stack)
         }
-        res.send({homePrice: result.rows[0].price});
+        result.rows.length > 0 ? res.send({homePrice: result.rows[0].price}) : res.sendStatus(404);
+        // res.send({homePrice: result.rows[0].price});
       })
     });
   },
