@@ -7,7 +7,8 @@
     "production": "webpack",
     "test": "jest",
     "start": "nodemon server/index.js",
-    "seed": "node seed"
+    "seed": "node seed",
+    "k6": "k6 run k6.script.js"
   },
   "author": "Blake",
   "license": "ISC",
