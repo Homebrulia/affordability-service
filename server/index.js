@@ -1,3 +1,4 @@
+const relic = require('newrelic');
 /* eslint-disable no-console */
 const express = require('express');
 // LEGACY CONTROLLER: const mongoCont = require('../controller/mongo.js');
