@@ -40,7 +40,7 @@ Inherited Project to build & optimize database and server to handle webscale tra
 **Path Parameters:**
   * `id` home listing id
 
-**Success Status Code:** `204`
+**Success Status Code:** `200`
 
 **Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
 ```json
@@ -56,4 +56,4 @@ Inherited Project to build & optimize database and server to handle webscale tra
 **Path Parameters:**
   * `id` home listing id
 
-**Success Status Code:** `204`
+**Success Status Code:** `200`
