@@ -17,4 +17,4 @@ app.listen(PORT, () => {
 
 // LEGACY GET:  app.get('*/:id/db', mongoCont.get);
 app.get('*/:id/db', postgresController.get);
-app.post('*/db', postgresController.post);
+app.post('mortgage/db', postgresController.post);
