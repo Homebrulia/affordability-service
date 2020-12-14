@@ -1,6 +1,8 @@
+const relic = require('newrelic');
 /* eslint-disable no-console */
 const express = require('express');
-const mongoCont = require('../controller/mongo.js');
+// LEGACY CONTROLLER: const mongoCont = require('../controller/mongo.js');
+const postgresController = require('../Postgres/controller/postgres.js');
 // const path = require('path')
 
 const app = express();
@@ -13,5 +15,6 @@ app.listen(PORT, () => {
   console.log(`Listening on 127.0.0.1:${PORT}`);
 });
 
-app.get('*/:id/db', mongoCont.get);
-// app.get('dbs', mongoCont.getAll);
+// LEGACY GET:  app.get('*/:id/db', mongoCont.get);
+app.get('*/:id/db', postgresController.get);
+app.post('mortgage/db', postgresController.post);

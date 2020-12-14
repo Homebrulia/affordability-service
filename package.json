@@ -7,7 +7,9 @@
     "production": "webpack",
     "test": "jest",
     "start": "nodemon server/index.js",
-    "seed": "node seed"
+    "seed": "node seed",
+    "k6": "k6 run K6.script.js",
+    "k6-post": "k6 run K6.post.script.js"
   },
   "author": "Blake",
   "license": "ISC",
@@ -43,6 +45,8 @@
     "mongodb": "3.6.2",
     "mongoose": "^5.10.12",
     "morgan": "^1.10.0",
+    "newrelic": "^7.0.2",
+    "pg": "^8.5.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-test-renderer": "^17.0.1",
