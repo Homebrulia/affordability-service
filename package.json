@@ -6,7 +6,8 @@
     "react-dev": "webpack -d --watch",
     "production": "webpack",
     "test": "jest",
-    "start": "nodemon server/index.js",
+    "start-dev": "nodemon server/index.js",
+    "start": "node server/index.js",
     "seed": "node seed",
     "k6": "k6 run K6.script.js",
     "k6-post": "k6 run K6.post.script.js"

@@ -3,3 +3,4 @@ client/dist/bundle.js
 *.csv
 newrelic.js
 *.log
+*.pem
