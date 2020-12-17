@@ -3,7 +3,7 @@ const relic = require('newrelic');
 const express = require('express');
 // LEGACY CONTROLLER: const mongoCont = require('../controller/mongo.js');
 const postgresController = require('../Postgres/controller/postgres.js');
-// const path = require('path')
+const path = require('path')
 
 const app = express();
 const PORT = 8020;
@@ -18,3 +18,7 @@ app.listen(PORT, () => {
 // LEGACY GET:  app.get('*/:id/db', mongoCont.get);
 app.get('*/:id/db', postgresController.get);
 app.post('/mortgage/db', postgresController.post);
+// For load testing
+app.get('*/loaderio-e8eeb20f03963c7796eaea1f2714e003.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, '../loaderio-e8eeb20f03963c7796eaea1f2714e003.txt'))
+})

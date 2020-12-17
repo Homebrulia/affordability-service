@@ -1,0 +1,10 @@
+controller
+DataBase
+node_modules
+sdcSeeding
+**.csv
+specs
+K6*
+**.sh
+**.log
+seed.js

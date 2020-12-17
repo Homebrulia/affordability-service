@@ -4,3 +4,6 @@ client/dist/bundle.js
 newrelic.js
 *.log
 *.pem
+postgrespassword.js
+*.sh
+*.txt

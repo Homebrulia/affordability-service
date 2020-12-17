@@ -1,8 +1,10 @@
 const { Pool } = require('pg');
+const pass = require('./postgrespassword.js');
 
 const pool = new Pool({
   user: 'postgres',
-  host: 'ec2-18-144-172-53.us-west-1.compute.amazonaws.com',
+  password: pass,
+  host: '52.53.208.111',
   database: 'affordability',
   max: 10,
   //max defaults to 10, but putting it here explicitly for later debugging.
