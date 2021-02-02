@@ -8,6 +8,7 @@
     "test": "jest",
     "start-dev": "nodemon server/index.js",
     "start": "node server/index.js",
+    "start-production": "NODE_ENV=production node server/index.js",
     "seed": "node seed",
     "k6": "k6 run K6.script.js",
     "k6-post": "k6 run K6.post.script.js"
@@ -41,6 +42,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "babel-jest": "^26.6.3",
+    "compression": "^1.7.4",
     "express": "^4.15.0",
     "morgan": "^1.10.0",
     "newrelic": "^7.0.2",

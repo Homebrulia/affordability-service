@@ -21,4 +21,4 @@ COPY . .
 EXPOSE 8020
 
 # How do you start your app?
-CMD npm run production && npm run start
+CMD npm run production && npm run start-production
