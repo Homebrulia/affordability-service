@@ -1,10 +1,12 @@
 const { Pool } = require('pg');
+const pass = require('./postgrespassword.js');
 
 const pool = new Pool({
   user: 'postgres',
-  host: 'localhost',
+  password: pass,
+  host: '54.153.85.98',
   database: 'affordability',
-  max: 10,
+  max: 50,
   //max defaults to 10, but putting it here explicitly for later debugging.
   port: 5432,
 });
